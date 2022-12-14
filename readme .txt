@@ -1,0 +1,1 @@
+To run tests on a native application, you need to unpack the archive "src\test\resources\app.zip"
