@@ -17,12 +17,11 @@ public class SelectingVMTest extends CommonConditions {
                 .expandTheSearchField()
                 .searchInformation("Google Cloud Platform Pricing Calculator")
                 .openThePageWithTheResults()
-                .activateTheComputeEngineSection()
                 .fillOutTheForm()
                 .createRandomEmail()
                 .sentTotalPriceOnThisRandomEmail()
                 .takeInformationAboutCostFromEmail();
         Assert.assertTrue(totalPriceInTheEmail.contains(new CalculationPage(driver).getTotalEstimatedCostOnTheCalculatorPage())
-                , "The received message does not contain the price for the month the same as on the calculator page");
+                , "The price sent by mail differs from the one calculated on the calculator page");
     }
 }

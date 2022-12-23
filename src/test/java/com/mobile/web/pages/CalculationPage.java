@@ -17,13 +17,6 @@ public class CalculationPage extends AbstractPage {
     @FindBy(xpath = "//*[text()='Compute Engine']")
     private WebElement buttonComputeEngine;
 
-    public CalculationPage activateTheComputeEngineSection() {
-        closeShadowPopUpWindow();
-        switchToIframe();
-        buttonComputeEngine.click();
-        //driver.switchTo().defaultContent();
-        return this;
-    }
     private static WebElement getShadowRoot(WebDriver driver,WebElement shadowHost) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         return (WebElement) js.executeScript("return arguments[0].shadowRoot", shadowHost);
@@ -83,13 +76,13 @@ public class CalculationPage extends AbstractPage {
     private WebElement fieldSeries;
 
     @FindBy(xpath = "//*[contains(@class, 'menu-container')] //*[contains(text(), 'N1')]")
-    private WebElement neededSeries;
+    private WebElement seriesN1;
 
     @FindBy(xpath = "//*[@placeholder = 'Instance type']")
     private WebElement fieldInstanceType;
 
     @FindBy(xpath = "//*[contains(@class, 'menu-container')] //*[contains(text(), 'n1-standard-8 (vCPUs: 8, RAM: 30GB)')]")
-    private WebElement neededInstanceType;
+    private WebElement instanceTypeN1Standard8;
 
     @FindBy(xpath = "//*[contains(text(),'Add GPUs.')]")
     private WebElement buttonAddGPUs;
@@ -100,7 +93,7 @@ public class CalculationPage extends AbstractPage {
     private WebElement gPUTypeField;
 
     @FindBy(xpath = "//*[contains(text(), 'NVIDIA Tesla V100')]")
-    private WebElement neededGPUType;
+    private WebElement gPUTypeNvidiaTeslaV100;
 
 
     @FindBy(xpath = "//*[@placeholder='Number of GPUs']")
@@ -113,19 +106,19 @@ public class CalculationPage extends AbstractPage {
     private WebElement localSSDField;
 
     @FindBy(xpath = "//*[contains(text(), '2x375 GB')]")
-    private WebElement neededLocalSSD;
+    private WebElement localSSD2x375GB;
 
     @FindBy(xpath = "//*[contains(@aria-label, 'Datacenter location')]/md-select-value")
     private WebElement datacenterLocationField;
 
     @FindBy(xpath = "//*[contains(@class, 'md-active')]//*[@value='europe-west3']")
-    private WebElement neededDatacenterLocation;
+    private WebElement datacenterLocationEuropeWest3;
 
     @FindBy(xpath = "//*[@placeholder='Committed usage']")
     private WebElement commitedUsageField;
 
     @FindBy(xpath = "//*[contains(@class, 'md-active')]//*[text()='1 Year']")
-    private WebElement neededCommitedUsage;
+    private WebElement commitedUsageOneYear;
 
     @FindBy(xpath = "//*[@name='ComputeEngineForm']//*[@aria-label='Add to Estimate']")
     private WebElement buttonAddToEstimate;
@@ -152,36 +145,38 @@ public class CalculationPage extends AbstractPage {
 
 
     public CalculationPage fillOutTheForm() {
+        closeShadowPopUpWindow();
+        switchToIframe();
+        buttonComputeEngine.click();
         fieldNumberOfInstances.sendKeys("4");
         fieldOperatingSystem.click();
-//        driver.hideKeyboard();
         freeOperatingSystem.click();
         fieldVMClass.click();
         regularVMClass.click();
         fieldSeries.click();
-        waitClickableOfElement(neededSeries);
-        neededSeries.click();
+        waitClickableOfElement(seriesN1);
+        seriesN1.click();
         fieldInstanceType.click();
-        waitClickableOfElement(neededInstanceType);
-        neededInstanceType.click();
+        waitClickableOfElement(instanceTypeN1Standard8);
+        instanceTypeN1Standard8.click();
         waitClickableOfElement(buttonAddGPUs);
         buttonAddGPUs.click();
         waitClickableOfElement(gPUTypeField);
         gPUTypeField.click();
-        waitClickableOfElement(neededGPUType);
-        neededGPUType.click();
+        waitClickableOfElement(gPUTypeNvidiaTeslaV100);
+        gPUTypeNvidiaTeslaV100.click();
         numberOfGPUsField.click();
         waitClickableOfElement(neededNumberOfGPU);
         neededNumberOfGPU.click();
         localSSDField.click();
-        waitClickableOfElement(neededLocalSSD);
-        neededLocalSSD.click();
+        waitClickableOfElement(localSSD2x375GB);
+        localSSD2x375GB.click();
         datacenterLocationField.click();
-        waitClickableOfElement(neededDatacenterLocation);
-        neededDatacenterLocation.click();
+        waitClickableOfElement(datacenterLocationEuropeWest3);
+        datacenterLocationEuropeWest3.click();
         commitedUsageField.click();
-        waitClickableOfElement(neededCommitedUsage);
-        neededCommitedUsage.click();
+        waitClickableOfElement(commitedUsageOneYear);
+        commitedUsageOneYear.click();
         buttonAddToEstimate.click();
         return this;
     }

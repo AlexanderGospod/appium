@@ -14,7 +14,7 @@ public class SearchResultsPage extends AbstractPage {
     private WebElement buttonDesiredMaterial;
 
     public CalculationPage openThePageWithTheResults() {
-        new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(ExpectedConditions.elementToBeClickable(buttonDesiredMaterial));
+        waitClickableOfElement(buttonDesiredMaterial);
         buttonDesiredMaterial.click();
         return new CalculationPage(driver);
     }
